@@ -6,7 +6,7 @@ package hs.kr.entrydsm.feed.adapter.`in`.attachFile.dto.response
  * @property fileName 원본 파일 이름
  * @property url 업로드된 파일에 접근할 수 있는 URL
  */
-class CreateAttachFileResponse(
+data class CreateAttachFileResponse(
     val fileName: String,
     val url: String,
 )
