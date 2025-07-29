@@ -1,0 +1,21 @@
+package hs.kr.entrydsm.feed.adapter.`in`.notice.dto.request
+
+import hs.kr.entrydsm.feed.model.notice.type.NoticeType
+import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Size
+
+data class CreateNoticeRequest(
+    @field:NotBlank(message = "title은 null, 공백, 띄어쓰기를 허용하지 않습니다.")
+    @Size(max = 100, message = "title은 최대 100자까지 가능합니다.")
+    val title: String,
+    @field:NotBlank(message = "content은 null, 공백, 띄어쓰기를 허용하지 않습니다.")
+    @Size(max = 5000, message = "content은 최대 5000자까지 가능합니다.")
+    val content: String,
+    @field:NotNull(message = "Pinned는 null일수가 없습니다")
+    val isPinned: Boolean,
+    @field:NotNull(message = "type은 null일수가 없습니다")
+    val type: NoticeType,
+    val fileName: String? = null,
+    val attachFileName: List<String>? = null,
+)
