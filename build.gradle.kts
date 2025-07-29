@@ -5,14 +5,11 @@ import kotlin.collections.plus
 plugins {
     kotlin("jvm") version "1.9.23"
     kotlin("plugin.spring") version "1.9.23"
-    kotlin("plugin.jpa") version "1.9.23"
-    kotlin("kapt") version PluginVersion.KOTLIN_VERSION
     id("org.springframework.boot") version "3.4.4"
     id("io.spring.dependency-management") version "1.1.7"
-    id("org.jlleitschuh.gradle.ktlint").version("12.1.1")
+    id("org.jlleitschuh.gradle.ktlint").version("11.5.1")
     id("io.gitlab.arturbosch.detekt") version "1.23.6"
     id("casper.documentation-convention")
-    id("com.google.protobuf") version "0.9.4"
 }
 
 // 서브프로젝트 설정
@@ -43,91 +40,11 @@ group = "hs.kr.entrydsm"
 version = "0.0.1-SNAPSHOT"
 
 dependencies {
-    // 스프링 부트 기본 기능
-    implementation(Dependencies.SPRING_BOOT_STARTER)
-
-    // 코틀린 리플렉션
-    implementation(Dependencies.KOTLIN_REFLECT)
-
-    // 스프링 부트 테스트 도구
-    testImplementation(Dependencies.SPRING_BOOT_STARTER_TEST)
-
-    // 코틀린 + JUnit5 테스트
-    testImplementation(Dependencies.KOTLIN_TEST_JUNIT5)
-
-    // JUnit5 실행 런처
-    testRuntimeOnly(Dependencies.JUNIT_PLATFORM_LAUNCHER)
-
-    // 웹 관련
-    implementation(Dependencies.SPRING_BOOT_STARTER_WEB)
-
-    // 데이터베이스
-    implementation(Dependencies.SPRING_BOOT_STARTER_DATA_JPA)
-    implementation(Dependencies.SPRING_BOOT_STARTER_DATA_REDIS)
-    runtimeOnly(Dependencies.MYSQL_CONNECTOR)
-
-    // 보안
-    implementation(Dependencies.SPRING_BOOT_STARTER_SECURITY)
-
-    // 검증
-    implementation(Dependencies.SPRING_BOOT_STARTER_VALIDATION)
-
-    // JSON 처리
-    implementation(Dependencies.JACKSON_MODULE_KOTLIN)
-    implementation(Dependencies.ORG_JSON)
-
-    // JWT
-    implementation(Dependencies.JWT_API)
-    implementation(Dependencies.JWT_IMPL)
-    runtimeOnly(Dependencies.JWT_JACKSON)
-
-    implementation(Dependencies.MAPSTRUCT)
-    kapt(Dependencies.MAPSTRUCT_PROCESSOR)
-
-    // grpc
-    implementation(Dependencies.GRPC_NETTY_SHADED)
-    implementation(Dependencies.GRPC_PROTOBUF)
-    implementation(Dependencies.GRPC_STUB)
-    implementation(Dependencies.GRPC_KOTLIN_STUB)
-    implementation(Dependencies.PROTOBUF_KOTLIN)
-    testImplementation(Dependencies.GRPC_TESTING)
-    implementation("net.devh:grpc-server-spring-boot-starter:2.12.0.RELEASE")
-
-
-    // swagger
-    implementation(Dependencies.SWAGGER)
-
-    // aws
-    implementation(Dependencies.AWS)
-
-    // feign
-    implementation(Dependencies.OPEN_FEIGN)
-
-    // Kafka
-    implementation(Dependencies.KAFKA)
-}
-
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:${DependencyVersion.PROTOBUF}"
-    }
-    plugins {
-        create("grpc") {
-            artifact = "io.grpc:protoc-gen-grpc-java:${DependencyVersion.GRPC}"
-        }
-        create("grpckt") {
-            artifact = "io.grpc:protoc-gen-grpc-kotlin:${DependencyVersion.GRPC_KOTLIN}:jdk8@jar"
-        }
-    }
-    generateProtoTasks {
-        all().forEach {
-            it.plugins {
-                create("grpc")
-                create("grpckt")
-            }
-        }
-
-    }
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 kotlin {
@@ -157,4 +74,8 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
     }
 
     jvmTarget = ("17") // Detekt가 사용하는 JVM 타겟을 Java 17로 지정
+}
+
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+    mainClass.set("hs.kr.entrydsm.feed.CasperFeedApplication")
 }
