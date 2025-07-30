@@ -21,18 +21,42 @@ class AttachFilePersistenceAdapter(
     private val attachFileRepository: AttachFileRepository,
     private val attachFileMapper: AttachFileMapper,
 ) : ExistsAttachFilePort, DeleteAttachFilePort, SaveAttachFilePort, FindAttachFilePort {
+    
+    /**
+     * 주어진 원본 파일명을 가진 첨부 파일이 존재하는지 확인합니다.
+     *
+     * @param attachFileName 확인할 원본 첨부 파일명
+     * @return 파일이 존재하면 true, 그렇지 않으면 false 반환
+     */
     override fun existsByOriginalAttachFileName(attachFileName: String): Boolean {
         return attachFileRepository.existsByOriginalAttachFileName(attachFileName)
     }
 
+    /**
+     * 주어진 원본 파일명을 가진 모든 첨부 파일을 삭제합니다.
+     *
+     * @param attachFileName 삭제할 첨부 파일의 원본 파일명
+     */
     override fun deleteByOriginalAttachFileName(attachFileName: String) {
         attachFileRepository.deleteByOriginalAttachFileName(attachFileName)
     }
 
+    /**
+     * 첨부 파일을 저장하거나 업데이트합니다.
+     *
+     * @param attachFile 저장할 첨부 파일 도메인 객체
+     * @return 저장된 첨부 파일 도메인 객체
+     */
     override fun save(attachFile: AttachFile): AttachFile {
         return attachFileMapper.toModel(attachFileRepository.save(attachFileMapper.toEntity(attachFile)))
     }
 
+    /**
+     * 주어진 원본 파일명을 가진 모든 첨부 파일을 조회합니다.
+     *
+     * @param attachFileName 조회할 첨부 파일의 원본 파일명
+     * @return 조회된 첨부 파일 도메인 객체 목록, 없을 경우 null 반환
+     */
     override fun findByOriginalAttachFileName(attachFileName: String): List<AttachFile>? {
         return attachFileRepository.findByOriginalAttachFileName(attachFileName)?.map { attachFileMapper.toModel(it) }
     }
