@@ -29,6 +29,20 @@ class CreateAttachFileService(
     private val deleteAttachFilePort: DeleteAttachFilePort,
     private val saveAttachFilePort: SaveAttachFilePort,
 ) : CreateAttachFileUseCase {
+    /**
+     * 첨부 파일을 업로드하고 저장된 파일 정보를 반환합니다.
+     *
+     * @param attachFile 업로드할 파일 목록 (MultipartFile)
+     * @return 업로드된 파일 정보 목록 (CreateAttachFileResponse 리스트)
+     * 
+     * @throws Exception 파일 업로드 중 오류가 발생한 경우
+     * 
+     * 이 메서드는 다음 작업을 수행합니다:
+     * 1. 이미 동일한 이름의 파일이 존재하면 삭제합니다.
+     * 2. 파일을 S3에 업로드합니다.
+     * 3. 업로드된 파일 정보를 데이터베이스에 저장합니다.
+     * 4. 업로드된 파일에 접근할 수 있는 URL을 생성하여 응답을 반환합니다.
+     */
     override fun execute(attachFile: List<MultipartFile>): List<CreateAttachFileResponse> {
         val attachFileResponses = mutableListOf<CreateAttachFileResponse>()
 
