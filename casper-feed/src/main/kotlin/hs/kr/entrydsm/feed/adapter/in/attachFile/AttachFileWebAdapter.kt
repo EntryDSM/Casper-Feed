@@ -20,6 +20,21 @@ import org.springframework.web.multipart.MultipartFile
 class AttachFileWebAdapter(
     private val createAttachFileUseCase: CreateAttachFileService,
 ) {
+    /**
+     * 하나 이상의 첨부 파일을 업로드하고, 업로드된 파일 정보를 반환합니다.
+     *
+     * 이 메서드는 클라이언트로부터 전송된 첨부 파일을 받아 서버에 저장하고,
+     * 저장된 파일에 대한 정보(파일명, 다운로드 URL 등)를 반환합니다.
+     *
+     * @param attachFile 업로드할 첨부 파일 목록 (multipart/form-data 형식의 'attach_file' 파라미터로 전달)
+     * @return 업로드된 첨부 파일 정보 목록 (CreateAttachFileResponse 리스트)
+     * 
+     * @throws org.springframework.web.multipart.MultipartException 파일 업로드에 실패한 경우
+     * @throws java.io.IOException 파일 저장 중 I/O 오류가 발생한 경우
+     * @throws hs.kr.entrydsm.feed.global.error.exception.InternalServerErrorException 내부 서버 오류가 발생한 경우
+     *
+     * @see CreateAttachFileService.execute
+     */
     @PostMapping
     fun createAttachFile(
         @RequestPart(value = "attach_file") attachFile: List<MultipartFile>,
