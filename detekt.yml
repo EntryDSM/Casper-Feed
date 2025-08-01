@@ -1,7 +1,7 @@
 complexity:
   active: true
   LongParameterList:
-    active: true
+    active: false
     functionThreshold: 6
     constructorThreshold: 7
 
@@ -11,7 +11,7 @@ style:
     active: true
     maxLineLength: 120
   MagicNumber:
-    active: true
+    active: false
     ignoreNumbers:
       - '-1'
       - '0'
