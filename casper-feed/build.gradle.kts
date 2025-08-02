@@ -70,9 +70,11 @@ dependencies {
     implementation(Dependencies.GRPC_KOTLIN_STUB)
     implementation(Dependencies.PROTOBUF_KOTLIN)
     testImplementation(Dependencies.GRPC_TESTING)
-    implementation(Dependencies.GRPC_SERVER)
     implementation(Dependencies.GRPC_CLIENT)
     implementation(Dependencies.GOOGLE_PROTOBUF)
+
+    // 코루틴
+    implementation(Dependencies.COROUTINES)
 
     // swagger
     implementation(Dependencies.SWAGGER)
