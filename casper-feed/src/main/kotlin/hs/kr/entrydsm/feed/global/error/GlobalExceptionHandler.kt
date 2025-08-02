@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 @RestControllerAdvice
 class GlobalExceptionHandler() {
     /**
-     * EquusException을 처리하는 메서드입니다.
+     * CasperException을 처리하는 메서드입니다.
      * 비즈니스 로직에서 발생한 예외를 적절한 HTTP 응답으로 변환합니다.
      *
      * @param e 처리할 CasperException 예외 객체
