@@ -40,7 +40,7 @@ object Dependencies {
     const val GRPC_TESTING = "io.grpc:grpc-testing:${DependencyVersion.GRPC}"
     const val GRPC_SERVER = "net.devh:grpc-server-spring-boot-starter:${DependencyVersion.GRPC_SERVER}"
     const val GRPC_CLIENT = "net.devh:grpc-client-spring-boot-starter:${DependencyVersion.GRPC_CLIENT}"
-    const val GOOGLE_PROTOBUF = "com.google.protobuf:protobuf-java:${DependencyVersion.GOGGLE_PROTOBUF}"
+    const val GOOGLE_PROTOBUF = "com.google.protobuf:protobuf-java:${DependencyVersion.GOOGLE_PROTOBUF}"
 
     // swagger
     const val SWAGGER = "org.springdoc:springdoc-openapi-starter-webmvc-ui:${DependencyVersion.SWAGGER_VERSION}"
