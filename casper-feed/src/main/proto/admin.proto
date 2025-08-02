@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package admin.proto;
+package casper.feed;
 
 option java_package = "hs.kr.entrydsm.casper.admin.proto";
 option java_outer_classname = "AdminServiceProto";
