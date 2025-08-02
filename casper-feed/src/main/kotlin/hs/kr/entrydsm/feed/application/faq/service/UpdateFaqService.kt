@@ -6,6 +6,7 @@ import hs.kr.entrydsm.feed.application.faq.port.`in`.UpdateFaqUseCase
 import hs.kr.entrydsm.feed.application.faq.port.out.FindFaqPort
 import hs.kr.entrydsm.feed.global.utils.user.UserUtils
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 
 /**
@@ -15,6 +16,7 @@ import java.util.UUID
  * @property userUtils 현재 사용자 정보를 조회하기 위한 유틸리티
  */
 @Service
+@Transactional
 class UpdateFaqService(
     private val findFaqPort: FindFaqPort,
     private val userUtils: UserUtils,
