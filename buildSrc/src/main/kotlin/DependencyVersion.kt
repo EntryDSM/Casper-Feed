@@ -14,7 +14,7 @@ object DependencyVersion {
     const val PROTOBUF = "3.25.3"
     const val GRPC_SERVER = "2.15.0.RELEASE"
     const val GRPC_CLIENT = "2.15.0.RELEASE"
-    const val GOGGLE_PROTOBUF = "3.25.3"
+    const val GOOGLE_PROTOBUF = "3.25.3"
 
     const val SWAGGER_VERSION = "2.5.0"
     const val AWS = "1.12.281"
