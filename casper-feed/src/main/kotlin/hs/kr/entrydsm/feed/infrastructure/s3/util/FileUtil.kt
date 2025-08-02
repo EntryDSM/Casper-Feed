@@ -37,6 +37,10 @@ class FileUtil(
 
     companion object {
         const val EXP_TIME = 10000 * 60 * 2
+        private val ALLOWED_EXTENSIONS = setOf(
+            "jpg", "jpeg", "png", "heic",
+            "hwp", "pptx", "pdf", "xls", "xlsx"
+        )
     }
 
     /**
@@ -128,14 +132,7 @@ class FileUtil(
         val originalFilename = file.originalFilename!!
         val ext = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).lowercase(Locale.getDefault())
 
-        if (!(
-                ext == "jpg" || ext == "jpeg" ||
-                    ext == "png" || ext == "heic" ||
-                    ext == "hwp" || ext == "pptx" ||
-                    ext == "pdf" || ext == "xls" ||
-                    ext == "xlsx"
-            )
-        ) {
+        if (ext !in ALLOWED_EXTENSIONS) {
             throw BadFileExtensionException
         }
 
