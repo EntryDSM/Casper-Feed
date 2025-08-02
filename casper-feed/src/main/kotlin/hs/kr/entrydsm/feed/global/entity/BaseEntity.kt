@@ -2,6 +2,7 @@ package hs.kr.entrydsm.feed.global.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.MappedSuperclass
 import java.util.*
@@ -16,7 +17,7 @@ import java.util.*
 @MappedSuperclass
 abstract class BaseEntity(
     @Id
-    @GeneratedValue(generator = "uuid2")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(
         columnDefinition = "BINARY(16)",
         nullable = false,
