@@ -4,6 +4,7 @@ object DependencyVersion {
     const val SPRING_DEPENDENCY_MANAGEMENT = "1.1.7"
     const val DETEKT = "1.23.6"
     const val KTLINT = "12.1.1"
+    const val COROUTINES = "1.8.0"
 
     const val JWT = "0.11.5"
     const val ORG_JSON = "20230227"
@@ -12,6 +13,8 @@ object DependencyVersion {
     const val GRPC = "1.61.1"
     const val GRPC_KOTLIN = "1.4.1"
     const val PROTOBUF = "3.25.3"
+    const val GRPC_CLIENT = "2.15.0.RELEASE"
+    const val GOOGLE_PROTOBUF = "3.25.3"
 
     const val SWAGGER_VERSION = "2.5.0"
     const val AWS = "1.12.281"
