@@ -13,7 +13,6 @@ object DependencyVersion {
     const val GRPC = "1.61.1"
     const val GRPC_KOTLIN = "1.4.1"
     const val PROTOBUF = "3.25.3"
-    const val GRPC_SERVER = "2.15.0.RELEASE"
     const val GRPC_CLIENT = "2.15.0.RELEASE"
     const val GOOGLE_PROTOBUF = "3.25.3"
 
