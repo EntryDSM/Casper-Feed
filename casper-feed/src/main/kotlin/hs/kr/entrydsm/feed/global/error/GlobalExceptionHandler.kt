@@ -29,7 +29,7 @@ class GlobalExceptionHandler() {
      * @return ErrorResponse를 포함하는 ResponseEntity
      */
     @ExceptionHandler(CasperException::class)
-    fun handlingEquusException(e: CasperException): ResponseEntity<ErrorResponse> {
+    fun handlingCasperException(e: CasperException): ResponseEntity<ErrorResponse> {
         val code = e.errorCode
         return ResponseEntity(
             ErrorResponse(code.status, code.message),
