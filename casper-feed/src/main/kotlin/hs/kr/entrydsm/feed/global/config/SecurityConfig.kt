@@ -73,7 +73,6 @@ class SecurityConfig(
                     .authenticated()
             }
             .with(FilterConfig(objectMapper)) { }
-            .build()
 
         return http.build()
     }
