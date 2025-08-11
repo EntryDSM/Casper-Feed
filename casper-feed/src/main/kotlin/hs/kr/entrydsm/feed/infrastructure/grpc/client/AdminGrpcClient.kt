@@ -23,7 +23,6 @@ class AdminGrpcClient {
     @GrpcClient("user-service")
     lateinit var channel: Channel
 
-
     /**
      * 관리자 ID를 기반으로 관리자 정보를 비동기적으로 조회합니다.
      * gRPC 비동기 스트리밍을 사용하여 관리자 서비스로부터 정보를 가져옵니다.
