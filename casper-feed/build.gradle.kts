@@ -21,6 +21,12 @@ repositories {
 	mavenCentral()
 }
 
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${DependencyVersion.SPRING_CLOUD_CONFIG_VERSION}")
+    }
+}
+
 dependencies {
     // 스프링 부트 기본 기능
     implementation(Dependencies.SPRING_BOOT_STARTER)
@@ -87,10 +93,9 @@ dependencies {
 
     // Kafka
     implementation(Dependencies.KAFKA)
-    implementation("org.springframework.kafka:spring-kafka:3.1.2")
 
     // Cloud Config
-    // implementation(Dependencies.CLOUD_CONFIG)
+    implementation(Dependencies.SPRING_CLOUD_CONFIG)
 }
 
 protobuf {
