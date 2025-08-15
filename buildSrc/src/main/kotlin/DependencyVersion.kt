@@ -16,8 +16,12 @@ object DependencyVersion {
     const val GRPC_CLIENT = "2.15.0.RELEASE"
     const val GOOGLE_PROTOBUF = "3.25.3"
 
+    const val KAFKA_VERSION = "3.1.2"
+
     const val SWAGGER_VERSION = "2.5.0"
     const val AWS = "1.12.281"
 
     const val OPEN_FEIGN_VERSION = "3.1.4"
+
+    const val SPRING_CLOUD_CONFIG_VERSION = "2023.0.3"
 }
