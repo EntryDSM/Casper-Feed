@@ -128,7 +128,7 @@ class FileUtil(
      * @throws BadFileExtensionException 허용되지 않은 확장자인 경우
      */
     private fun verificationFile(file: MultipartFile): String {
-        if (file.isEmpty || file.originalFilename == null) throw EmptyFileException
+        if (file.isEmpty || file.originalFilename.isNullOrBlank()) throw EmptyFileException
         val originalFilename = file.originalFilename!!
         val ext = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).lowercase(Locale.getDefault())
 
