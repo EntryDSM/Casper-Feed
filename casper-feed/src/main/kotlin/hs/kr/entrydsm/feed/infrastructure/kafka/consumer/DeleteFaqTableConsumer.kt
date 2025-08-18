@@ -1,6 +1,6 @@
 package hs.kr.entrydsm.feed.infrastructure.kafka.consumer
 
-import hs.kr.entrydsm.feed.adapter.out.persistence.faq.repository.FaqRepository
+import hs.kr.entrydsm.feed.domain.faq.adapter.out.persistence.repository.FaqRepository
 import hs.kr.entrydsm.feed.infrastructure.kafka.configuration.KafkaTopics
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Service
