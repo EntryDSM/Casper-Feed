@@ -5,6 +5,7 @@ import hs.kr.entrydsm.feed.domain.screen.adatper.`in`.web.dto.response.ScreenRes
 import hs.kr.entrydsm.feed.domain.screen.application.port.`in`.CreateScreenUseCase
 import hs.kr.entrydsm.feed.domain.screen.application.port.`in`.QueryScreenUseCase
 import hs.kr.entrydsm.feed.domain.screen.application.port.`in`.UpdateScreenUseCase
+import hs.kr.entrydsm.feed.global.document.screen.ScreenApiDocument
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
@@ -33,7 +34,7 @@ class ScreenWebAdapter(
     private val createScreenUseCase: CreateScreenUseCase,
     private val updateScreenUseCase: UpdateScreenUseCase,
     private val queryScreenUseCase: QueryScreenUseCase,
-) {
+) : ScreenApiDocument {
     /**
      * 새로운 화면 이미지를 업로드하고 저장합니다.
      *
@@ -42,7 +43,7 @@ class ScreenWebAdapter(
      */
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping
-    suspend fun createScreen(
+    override suspend fun createScreen(
         @RequestPart(name = "image") image: MultipartFile,
     ): ScreenResponse = createScreenUseCase.execute(image)
 
@@ -54,7 +55,7 @@ class ScreenWebAdapter(
      * @return 업데이트된 화면 이미지 정보가 포함된 응답 객체
      */
     @PatchMapping("/{screen-id}")
-    fun updateScreen(
+    override fun updateScreen(
         @PathVariable(name = "screen-id") id: UUID,
         @RequestPart(name = "image") image: MultipartFile,
     ): ScreenResponse = updateScreenUseCase.execute(id, image)
@@ -65,5 +66,5 @@ class ScreenWebAdapter(
      * @return 화면 이미지 목록이 포함된 응답 객체 리스트
      */
     @GetMapping
-    fun queryScreen(): List<QueryScreenResponse> = queryScreenUseCase.execute()
+    override fun queryScreen(): List<QueryScreenResponse> = queryScreenUseCase.execute()
 }
