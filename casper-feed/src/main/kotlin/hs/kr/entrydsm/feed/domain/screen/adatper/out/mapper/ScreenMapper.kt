@@ -1,0 +1,28 @@
+package hs.kr.entrydsm.feed.domain.screen.adatper.out.mapper
+
+import hs.kr.entrydsm.feed.domain.screen.adatper.out.entity.ScreenJpaEntity
+import hs.kr.entrydsm.feed.domain.screen.model.Screen
+import org.mapstruct.Mapper
+
+/**
+ * 화면(Screen) 도메인 모델과 JPA 엔티티 간의 변환을 담당하는 매퍼 인터페이스입니다.
+ * MapStruct를 사용하여 구현체가 자동으로 생성됩니다.
+ */
+@Mapper(componentModel = "spring")
+interface ScreenMapper {
+    /**
+     * Screen 도메인 모델을 JPA 엔티티로 변환합니다.
+     *
+     * @param model 변환할 Screen 도메인 모델
+     * @return 변환된 ScreenJpaEntity 인스턴스
+     */
+    fun toEntity(model: Screen): ScreenJpaEntity
+
+    /**
+     * JPA 엔티티를 Screen 도메인 모델로 변환합니다.
+     *
+     * @param entity 변환할 ScreenJpaEntity 인스턴스
+     * @return 변환된 Screen 도메인 모델
+     */
+    fun toModel(entity: ScreenJpaEntity): Screen
+}
