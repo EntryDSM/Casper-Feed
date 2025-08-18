@@ -14,6 +14,7 @@ import hs.kr.entrydsm.feed.domain.notice.application.port.`in`.QueryNoticeTitleU
 import hs.kr.entrydsm.feed.domain.notice.application.port.`in`.UpdateNoticeUseCase
 import hs.kr.entrydsm.feed.domain.notice.application.port.`in`.UploadNoticeImageUseCase
 import hs.kr.entrydsm.feed.domain.notice.model.type.NoticeType
+import hs.kr.entrydsm.feed.global.document.notice.NoticeApiDocument
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -45,7 +46,7 @@ class NoticeWebAdapter(
     private val queryNoticeTitleUseCase: QueryNoticeTitleUseCase,
     private val uploadNoticeImageUseCase: UploadNoticeImageUseCase,
     private val queryListNoticeListByTypeUseCase: QueryNoticeListByTypeUseCase,
-) {
+) : NoticeApiDocument {
     /**
      * 새로운 공지사항을 생성합니다.
      *
@@ -53,7 +54,7 @@ class NoticeWebAdapter(
      */
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping
-    fun createNotice(
+    override fun createNotice(
         @RequestBody @Valid
         createNoticeRequest: CreateNoticeRequest,
     ) {
@@ -68,7 +69,7 @@ class NoticeWebAdapter(
      * @return 수정 결과에 대한 응답 엔티티
      */
     @PatchMapping("/{notice-id}")
-    fun updateNotice(
+    override fun updateNotice(
         @PathVariable(name = "notice-id") id: UUID,
         @RequestBody updateNoticeRequest: UpdateNoticeRequest,
     ): ResponseEntity<String> = updateNoticeUseCase.execute(id, updateNoticeRequest)
@@ -80,7 +81,7 @@ class NoticeWebAdapter(
      * @return 업로드된 이미지 정보가 포함된 응답 객체
      */
     @PostMapping("/image")
-    fun uploadImage(
+    override fun uploadImage(
         @RequestPart(name = "photo") image: MultipartFile,
     ): UploadNoticeImageResponse = uploadNoticeImageUseCase.execute(image)
 
@@ -90,7 +91,7 @@ class NoticeWebAdapter(
      * @return 공지사항 제목 목록이 포함된 응답 객체 리스트
      */
     @GetMapping("/title")
-    fun queryNoticeTitle(): List<QueryNoticeTitleResponse> = queryNoticeTitleUseCase.execute()
+    override fun queryNoticeTitle(): List<QueryNoticeTitleResponse> = queryNoticeTitleUseCase.execute()
 
     /**
      * 특정 공지사항의 상세 정보를 조회합니다.
@@ -99,7 +100,7 @@ class NoticeWebAdapter(
      * @return 공지사항 상세 정보가 포함된 응답 객체
      */
     @GetMapping("/{notice-id}")
-    fun queryDetailsNotice(
+    override fun queryDetailsNotice(
         @PathVariable(name = "notice-id", required = true)
         noticeId: UUID,
     ): QueryDetailsNoticeResponse = queryDetailsNoticeUseCase.execute(noticeId)
@@ -111,7 +112,7 @@ class NoticeWebAdapter(
      * @return 해당 유형의 공지사항 목록이 포함된 응답 객체
      */
     @GetMapping
-    fun queryNoticeListByType(
+    override fun queryNoticeListByType(
         @RequestParam("type") noticeType: NoticeType?,
     ): QueryListNoticeResponse = queryListNoticeListByTypeUseCase.execute(noticeType)
 
@@ -122,7 +123,7 @@ class NoticeWebAdapter(
      */
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @DeleteMapping("/{notice-id}")
-    fun deleteNotice(
+    override fun deleteNotice(
         @PathVariable(name = "notice-id")id: UUID,
     ) = deleteNoticeUseCase.execute(id)
 }
