@@ -1,6 +1,7 @@
 package hs.kr.entrydsm.feed.domain.reserve.adapter.`in`.web
 
 import hs.kr.entrydsm.feed.domain.reserve.application.port.`in`.GetReserveUseCase
+import hs.kr.entrydsm.feed.global.document.reserve.ReserveApiDocument
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -17,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/reserve")
 class ReserveWebAdapter(
     private val getReserveUseCase: GetReserveUseCase,
-) {
+) : ReserveApiDocument {
     /**
      * 예약 페이지 링크를 조회합니다.
      *
      * @return 예약 페이지 URL 문자열
      */
     @GetMapping
-    fun reserveLink(): String = getReserveUseCase.execute()
+    override fun reserveLink(): String = getReserveUseCase.execute()
 }
