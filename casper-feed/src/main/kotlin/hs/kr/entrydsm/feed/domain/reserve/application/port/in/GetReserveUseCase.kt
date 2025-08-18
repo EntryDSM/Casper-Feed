@@ -1,4 +1,4 @@
-package hs.kr.entrydsm.feed.application.reserve.port.`in`
+package hs.kr.entrydsm.feed.domain.reserve.application.port.`in`
 
 /**
  * 예약 관련 비즈니스 로직을 정의한 인터페이스입니다.

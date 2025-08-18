@@ -1,6 +1,6 @@
-package hs.kr.entrydsm.feed.application.reserve.service
+package hs.kr.entrydsm.feed.domain.reserve.application.service
 
-import hs.kr.entrydsm.feed.application.reserve.port.`in`.GetReserveUseCase
+import hs.kr.entrydsm.feed.domain.reserve.application.port.`in`.GetReserveUseCase
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
