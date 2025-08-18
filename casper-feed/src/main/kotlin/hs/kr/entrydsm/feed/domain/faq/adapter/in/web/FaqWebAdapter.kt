@@ -12,6 +12,7 @@ import hs.kr.entrydsm.feed.domain.faq.application.port.`in`.QueryFaqListUseCase
 import hs.kr.entrydsm.feed.domain.faq.application.port.`in`.QueryTopFaqUseCase
 import hs.kr.entrydsm.feed.domain.faq.application.port.`in`.UpdateFaqUseCase
 import hs.kr.entrydsm.feed.domain.faq.model.type.FaqType
+import hs.kr.entrydsm.feed.global.document.faq.FaqApiDocument
 import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -50,10 +51,11 @@ class FaqWebAdapter(
     private val queryFaqListUseCase: QueryFaqListUseCase,
     private val queryTopFaqUseCase: QueryTopFaqUseCase,
     private val updateFaqUseCase: UpdateFaqUseCase,
-) {
+) : FaqApiDocument {
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    fun createFaq(
+    override fun createFaq(
         @RequestBody @Validated
         createFaqRequest: CreateFaqRequest,
     ) = createFaqUseCase.execute(createFaqRequest)
@@ -65,7 +67,7 @@ class FaqWebAdapter(
      * @return FAQ 상세 정보가 포함된 응답 객체
      */
     @GetMapping("/{faq-id}")
-    fun queryFaqDetails(
+    override fun queryFaqDetails(
         @PathVariable("faq-id") faqId: UUID,
     ): FaqDetailsResponse = queryFaqDetailsUseCase.execute(faqId)
 
@@ -76,7 +78,7 @@ class FaqWebAdapter(
      * @return 해당 유형의 FAQ 목록이 포함된 응답 객체
      */
     @GetMapping
-    fun queryFaqListByType(
+    override fun queryFaqListByType(
         @RequestParam("type") faqType: FaqType,
     ): FaqListResponse = queryFaqListByTypeUseCase.execute(faqType)
 
@@ -86,7 +88,7 @@ class FaqWebAdapter(
      * @return 모든 FAQ 목록이 포함된 응답 객체
      */
     @GetMapping("/all")
-    fun queryFaqList(): FaqListResponse = queryFaqListUseCase.execute()
+    override fun queryFaqList(): FaqListResponse = queryFaqListUseCase.execute()
 
     /**
      * 최근에 등록된 FAQ 목록을 조회합니다.
@@ -94,7 +96,7 @@ class FaqWebAdapter(
      * @return 최근 FAQ 목록이 포함된 응답 객체
      */
     @GetMapping("/recently")
-    fun queryTopFaq() = queryTopFaqUseCase.execute()
+    override fun queryTopFaq() = queryTopFaqUseCase.execute()
 
     /**
      * 기존 FAQ를 수정합니다.
@@ -103,7 +105,7 @@ class FaqWebAdapter(
      * @param updateFaqRequest FAQ 수정 요청 데이터
      */
     @PatchMapping("/{faq-id}")
-    fun updateFaq(
+    override fun updateFaq(
         @PathVariable("faq-id") faqId: UUID,
         @RequestBody @Validated
         updateFaqRequest: UpdateFaqRequest,
@@ -115,7 +117,7 @@ class FaqWebAdapter(
      * @param faqId 삭제할 FAQ의 고유 식별자
      */
     @DeleteMapping("/{faq-id}")
-    fun deleteFaq(
+    override fun deleteFaq(
         @PathVariable("faq-id") faqId: UUID,
     ) = deleteFaqUseCase.execute(faqId)
 }
