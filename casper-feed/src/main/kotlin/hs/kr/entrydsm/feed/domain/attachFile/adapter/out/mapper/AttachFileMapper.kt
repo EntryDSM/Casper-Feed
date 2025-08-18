@@ -1,7 +1,7 @@
-package hs.kr.entrydsm.feed.adapter.out.mapper.attachFile
+package hs.kr.entrydsm.feed.domain.attachFile.adapter.out.mapper
 
-import hs.kr.entrydsm.feed.adapter.out.entity.attachFile.AttachFileJpaEntity
-import hs.kr.entrydsm.feed.model.attachFile.AttachFile
+import hs.kr.entrydsm.feed.domain.attachFile.adapter.out.entity.AttachFileJpaEntity
+import hs.kr.entrydsm.feed.domain.attachFile.model.AttachFile
 import org.mapstruct.Mapper
 
 /**

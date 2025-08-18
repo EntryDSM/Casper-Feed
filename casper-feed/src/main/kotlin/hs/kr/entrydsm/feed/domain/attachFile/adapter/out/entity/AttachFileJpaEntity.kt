@@ -1,4 +1,4 @@
-package hs.kr.entrydsm.feed.adapter.out.entity.attachFile
+package hs.kr.entrydsm.feed.domain.attachFile.adapter.out.entity
 
 import jakarta.persistence.Entity
 import jakarta.persistence.Id

@@ -1,12 +1,12 @@
-package hs.kr.entrydsm.feed.adapter.out.persistence.attachFile
+package hs.kr.entrydsm.feed.domain.attachFile.adapter.out.persistence
 
-import hs.kr.entrydsm.feed.adapter.out.mapper.attachFile.AttachFileMapper
-import hs.kr.entrydsm.feed.adapter.out.persistence.attachFile.repository.AttachFileRepository
-import hs.kr.entrydsm.feed.application.attachFile.port.out.DeleteAttachFilePort
-import hs.kr.entrydsm.feed.application.attachFile.port.out.ExistsAttachFilePort
-import hs.kr.entrydsm.feed.application.attachFile.port.out.FindAttachFilePort
-import hs.kr.entrydsm.feed.application.attachFile.port.out.SaveAttachFilePort
-import hs.kr.entrydsm.feed.model.attachFile.AttachFile
+import hs.kr.entrydsm.feed.domain.attachFile.application.port.out.DeleteAttachFilePort
+import hs.kr.entrydsm.feed.domain.attachFile.application.port.out.ExistsAttachFilePort
+import hs.kr.entrydsm.feed.domain.attachFile.application.port.out.FindAttachFilePort
+import hs.kr.entrydsm.feed.domain.attachFile.application.port.out.SaveAttachFilePort
+import hs.kr.entrydsm.feed.domain.attachFile.adapter.out.mapper.AttachFileMapper
+import hs.kr.entrydsm.feed.domain.attachFile.adapter.out.persistence.repository.AttachFileRepository
+import hs.kr.entrydsm.feed.domain.attachFile.model.AttachFile
 import org.springframework.stereotype.Component
 
 /**
@@ -21,7 +21,7 @@ class AttachFilePersistenceAdapter(
     private val attachFileRepository: AttachFileRepository,
     private val attachFileMapper: AttachFileMapper,
 ) : ExistsAttachFilePort, DeleteAttachFilePort, SaveAttachFilePort, FindAttachFilePort {
-    
+
     /**
      * 주어진 원본 파일명을 가진 첨부 파일이 존재하는지 확인합니다.
      *

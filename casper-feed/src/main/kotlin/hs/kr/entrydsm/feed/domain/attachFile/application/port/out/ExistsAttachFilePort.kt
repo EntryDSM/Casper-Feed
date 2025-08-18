@@ -1,4 +1,4 @@
-package hs.kr.entrydsm.feed.application.attachFile.port.out
+package hs.kr.entrydsm.feed.domain.attachFile.application.port.out
 
 /**
  * 첨부 파일 존재 여부 확인을 위한 포트 인터페이스입니다.

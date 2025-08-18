@@ -1,6 +1,6 @@
-package hs.kr.entrydsm.feed.application.attachFile.port.out
+package hs.kr.entrydsm.feed.domain.attachFile.application.port.out
 
-import hs.kr.entrydsm.feed.model.attachFile.AttachFile
+import hs.kr.entrydsm.feed.domain.attachFile.model.AttachFile
 
 /**
  * 첨부 파일 조회를 위한 포트 인터페이스입니다.

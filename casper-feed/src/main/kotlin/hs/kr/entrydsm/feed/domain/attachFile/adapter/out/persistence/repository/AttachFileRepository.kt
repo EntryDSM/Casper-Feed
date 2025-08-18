@@ -1,6 +1,6 @@
-package hs.kr.entrydsm.feed.adapter.out.persistence.attachFile.repository
+package hs.kr.entrydsm.feed.domain.attachFile.adapter.out.persistence.repository
 
-import hs.kr.entrydsm.feed.adapter.out.entity.attachFile.AttachFileJpaEntity
+import hs.kr.entrydsm.feed.domain.attachFile.adapter.out.entity.AttachFileJpaEntity
 import org.springframework.data.jpa.repository.JpaRepository
 
 /**

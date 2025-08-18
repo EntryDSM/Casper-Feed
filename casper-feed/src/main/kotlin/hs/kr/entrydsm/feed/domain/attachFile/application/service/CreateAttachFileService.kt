@@ -1,13 +1,13 @@
-package hs.kr.entrydsm.feed.application.attachFile.service
+package hs.kr.entrydsm.feed.domain.attachFile.application.service
 
-import hs.kr.entrydsm.feed.adapter.`in`.attachFile.dto.response.CreateAttachFileResponse
-import hs.kr.entrydsm.feed.application.attachFile.port.`in`.CreateAttachFileUseCase
-import hs.kr.entrydsm.feed.application.attachFile.port.out.DeleteAttachFilePort
-import hs.kr.entrydsm.feed.application.attachFile.port.out.ExistsAttachFilePort
-import hs.kr.entrydsm.feed.application.attachFile.port.out.SaveAttachFilePort
+import hs.kr.entrydsm.feed.domain.attachFile.adapter.`in`.web.dto.response.CreateAttachFileResponse
+import hs.kr.entrydsm.feed.domain.attachFile.application.port.`in`.CreateAttachFileUseCase
+import hs.kr.entrydsm.feed.domain.attachFile.application.port.out.DeleteAttachFilePort
+import hs.kr.entrydsm.feed.domain.attachFile.application.port.out.ExistsAttachFilePort
+import hs.kr.entrydsm.feed.domain.attachFile.application.port.out.SaveAttachFilePort
 import hs.kr.entrydsm.feed.infrastructure.s3.PathList
 import hs.kr.entrydsm.feed.infrastructure.s3.util.FileUtil
-import hs.kr.entrydsm.feed.model.attachFile.AttachFile
+import hs.kr.entrydsm.feed.domain.attachFile.model.AttachFile
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 

@@ -1,4 +1,4 @@
-package hs.kr.entrydsm.feed.model.attachFile
+package hs.kr.entrydsm.feed.domain.attachFile.model
 
 /**
  * 첨부 파일 정보를 나타내는 데이터 클래스입니다.
