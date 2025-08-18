@@ -1,4 +1,4 @@
-package hs.kr.entrydsm.feed.application.notice.exception
+package hs.kr.entrydsm.feed.domain.notice.exception
 
 import hs.kr.entrydsm.feed.global.error.exception.CasperException
 import hs.kr.entrydsm.feed.global.error.exception.ErrorCode
