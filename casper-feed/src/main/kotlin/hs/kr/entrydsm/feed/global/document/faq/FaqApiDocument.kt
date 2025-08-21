@@ -34,6 +34,12 @@ interface FaqApiDocument {
             content = arrayOf(Content())
         )
     )
+
+    /**
+     * 새로운 FAQ를 생성합니다.
+     *
+     * @param createFaqRequest FAQ 생성 요청 데이터
+     */
     fun createFaq(
         @RequestBody @Validated
         createFaqRequest: CreateFaqRequest,
@@ -55,6 +61,12 @@ interface FaqApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * FAQ 상세 정보를 조회합니다.
+     *
+     * @param faqId 조회할 FAQ의 ID
+     * @return FAQ 상세 정보
+     */
     fun queryFaqDetails(
         @PathVariable("faq-id") faqId: UUID,
     ): FaqDetailsResponse
@@ -70,6 +82,12 @@ interface FaqApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 특정 유형의 FAQ 목록을 조회합니다.
+     *
+     * @param faqType 조회할 FAQ 유형
+     * @return FAQ 목록
+     */
     fun queryFaqListByType(
         @RequestParam("type") faqType: FaqType,
     ): FaqListResponse
@@ -85,6 +103,11 @@ interface FaqApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 모든 FAQ 목록을 조회합니다.
+     *
+     * @return 전체 FAQ 목록
+     */
     fun queryFaqList(): FaqListResponse
 
     @Operation(
@@ -98,6 +121,11 @@ interface FaqApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 최근에 생성된 상위 5개의 FAQ 제목을 조회합니다.
+     *
+     * @return 상위 FAQ 제목 목록
+     */
     fun queryTopFaq(): List<FaqTitleResponse>
 
     @Operation(
@@ -116,6 +144,12 @@ interface FaqApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 기존 FAQ를 수정합니다.
+     *
+     * @param faqId 수정할 FAQ의 ID
+     * @param updateFaqRequest FAQ 수정 요청 데이터
+     */
     fun updateFaq(
         @PathVariable("faq-id") faqId: UUID,
         @RequestBody @Validated
@@ -138,6 +172,11 @@ interface FaqApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * FAQ를 삭제합니다.
+     *
+     * @param faqId 삭제할 FAQ의 ID
+     */
     fun deleteFaq(
         @PathVariable("faq-id") faqId: UUID,
     )

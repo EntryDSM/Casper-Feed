@@ -23,5 +23,10 @@ interface ReserveApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 예약 페이지 링크를 조회합니다.
+     *
+     * @return 예약 페이지 링크 URL
+     */
     fun reserveLink(): String
 }

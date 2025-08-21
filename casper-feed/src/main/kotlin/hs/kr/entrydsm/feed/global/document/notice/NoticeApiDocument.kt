@@ -43,6 +43,11 @@ interface NoticeApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 새로운 공지사항을 생성합니다.
+     *
+     * @param createNoticeRequest 공지사항 생성 요청 데이터
+     */
     fun createNotice(
         @RequestBody @Valid
         createNoticeRequest: CreateNoticeRequest,
@@ -69,6 +74,13 @@ interface NoticeApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 기존 공지사항을 수정합니다.
+     *
+     * @param id 수정할 공지사항의 ID
+     * @param updateNoticeRequest 공지사항 수정 요청 데이터
+     * @return 수정 결과 메시지
+     */
     fun updateNotice(
         @PathVariable(name = "notice-id") id: UUID,
         @RequestBody updateNoticeRequest: UpdateNoticeRequest,
@@ -85,6 +97,12 @@ interface NoticeApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 공지사항에 첫부할 이미지를 업로드합니다.
+     *
+     * @param image 업로드할 이미지 파일
+     * @return 업로드된 이미지 정보
+     */
     fun uploadImage(
         @RequestPart(name = "photo") image: MultipartFile,
     ): UploadNoticeImageResponse
@@ -100,6 +118,11 @@ interface NoticeApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 모든 공지사항의 제목 목록을 조회합니다.
+     *
+     * @return 공지사항 제목 목록
+     */
     fun queryNoticeTitle(): List<QueryNoticeTitleResponse>
 
     @Operation(
@@ -118,6 +141,12 @@ interface NoticeApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 공지사항 상세 정보를 조회합니다.
+     *
+     * @param noticeId 조회할 공지사항의 ID
+     * @return 공지사항 상세 정보
+     */
     fun queryDetailsNotice(
         @PathVariable(name = "notice-id", required = true)
         noticeId: UUID,
@@ -134,6 +163,12 @@ interface NoticeApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 특정 유형의 공지사항 목록을 조회합니다.
+     *
+     * @param noticeType 조회할 공지사항 유형 (널 가능)
+     * @return 공지사항 목록
+     */
     fun queryNoticeListByType(
         @RequestParam("type") noticeType: NoticeType?,
     ): QueryListNoticeResponse
@@ -155,6 +190,11 @@ interface NoticeApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 공지사항을 삭제합니다.
+     *
+     * @param id 삭제할 공지사항의 ID
+     */
     fun deleteNotice(
         @PathVariable(name = "notice-id")id: UUID,
     )

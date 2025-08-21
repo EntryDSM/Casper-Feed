@@ -39,6 +39,12 @@ interface ScreenApiDocument {
             content = arrayOf(Content())
         ),
     )
+    /**
+     * 전형 요강 이미지를 새로 업로드합니다.
+     *
+     * @param image 업로드할 전형 요강 이미지 파일
+     * @return 업로드된 이미지 정보
+     */
     suspend fun createScreen(
         @RequestPart(name = "image") image: MultipartFile,
     ): ScreenResponse
@@ -64,6 +70,13 @@ interface ScreenApiDocument {
             content = arrayOf(Content())
         ),
     )
+    /**
+     * 기존 전형 요강 이미지를 수정합니다.
+     *
+     * @param id 수정할 전형 요강의 ID
+     * @param image 새로 대체할 이미지 파일
+     * @return 수정된 이미지 정보
+     */
     fun updateScreen(
         @PathVariable(name = "screen-id") id: UUID,
         @RequestPart(name = "image") image: MultipartFile,
@@ -80,5 +93,10 @@ interface ScreenApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 모든 전형 요강 이미지 목록을 조회합니다.
+     *
+     * @return 전형 요강 이미지 목록
+     */
     fun queryScreen(): List<QueryScreenResponse>
 }
