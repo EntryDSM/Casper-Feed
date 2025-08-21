@@ -117,9 +117,7 @@ protobuf {
                 create("grpckt")
             }
         }
-
     }
-
 }
 
 kotlin {
