@@ -30,6 +30,17 @@ interface AttachFileApiDocument {
             content = arrayOf(Content())
         )
     )
+    /**
+     * 첨부 파일을 업로드합니다.
+     * 
+     * 1. 이미 동일한 이름의 파일이 존재하면 삭제합니다.
+     * 2. 파일을 S3에 업로드합니다.
+     * 3. 업로드된 파일 정보를 데이터베이스에 저장합니다.
+     * 4. 업로드된 파일에 접근할 수 있는 URL을 생성하여 응답을 반환합니다.
+     *
+     * @param attachFile 업로드할 첨부 파일 목록
+     * @return 업로드된 파일 정보 목록
+     */
     fun createAttachFile(
         @RequestPart(value = "attach_file") attachFile: List<MultipartFile>,
     ): List<CreateAttachFileResponse>
