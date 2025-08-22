@@ -10,9 +10,11 @@ import hs.kr.entrydsm.feed.infrastructure.s3.util.FileUtil
 import hs.kr.entrydsm.feed.domain.attachFile.model.AttachFile
 import hs.kr.entrydsm.feed.domain.notice.application.port.`in`.UpdateNoticeUseCase
 import hs.kr.entrydsm.feed.domain.notice.application.port.out.FindNoticePort
+import hs.kr.entrydsm.feed.domain.notice.application.port.out.SaveNoticePort
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 
 /**
@@ -29,6 +31,7 @@ class UpdateNoticeService(
     private val fileUtil: FileUtil,
     private val adminUtils: AdminUtils,
     private val findAttachFilePort: FindAttachFilePort,
+    private val saveNoticePort: SaveNoticePort
 ) : UpdateNoticeUseCase {
     /**
      * 공지사항을 수정합니다.
@@ -40,6 +43,7 @@ class UpdateNoticeService(
      * @throws AttachFileNotFoundException 첨부 파일을 찾을 수 없는 경우
      * @throws hs.kr.entrydsm.feed.global.exception.UnauthorizedException 관리자 인증에 실패한 경우
      */
+    @Transactional
     override fun execute(
         noticeId: UUID,
         request: UpdateNoticeRequest,
@@ -50,17 +54,19 @@ class UpdateNoticeService(
         val fileName = request.fileName
         val attachFiles = findAttachFiles(request.attachFileName)
 
-        request.run {
-            notice.updateNotice(
-                newTitle = title,
-                newContent = content,
-                newIsPinned = isPinned,
-                newType = type,
-                newFileName = fileName,
-                newAdminId = adminId,
-                newAttachFile = attachFiles,
-            )
-        }
+        saveNoticePort.saveNotice(
+            request.run {
+                notice.updateNotice(
+                    newTitle = title,
+                    newContent = content,
+                    newIsPinned = isPinned,
+                    newType = type,
+                    newFileName = fileName,
+                    newAdminId = adminId,
+                    newAttachFile = attachFiles,
+                )
+            }
+        )
 
         return fileName?.let {
             ResponseEntity.ok(fileUtil.generateObjectUrl(it, PathList.NOTICE))
