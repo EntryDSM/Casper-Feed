@@ -1,6 +1,6 @@
 package hs.kr.entrydsm.feed.domain.attachFile.adapter.`in`.web
 
-import hs.kr.entrydsm.feed.domain.attachFile.application.service.CreateAttachFileService
+import hs.kr.entrydsm.feed.domain.attachFile.application.port.`in`.CreateAttachFileUseCase
 import hs.kr.entrydsm.feed.global.document.attachFile.AttachFileApiDocument
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile
 @RestController
 @RequestMapping("/attach-file")
 class AttachFileWebAdapter(
-    private val createAttachFileUseCase: CreateAttachFileService,
+    private val createAttachFileUseCase: CreateAttachFileUseCase,
 ) : AttachFileApiDocument {
     /**
      * 하나 이상의 첨부 파일을 업로드하고, 업로드된 파일 정보를 반환합니다.
@@ -34,7 +34,7 @@ class AttachFileWebAdapter(
      * @throws java.io.IOException 파일 저장 중 I/O 오류가 발생한 경우
      * @throws hs.kr.entrydsm.feed.global.error.exception.InternalServerErrorException 내부 서버 오류가 발생한 경우
      *
-     * @see CreateAttachFileService.execute
+     * @see CreateAttachFileUseCase.execute
      */
     @PostMapping
     override fun createAttachFile(
