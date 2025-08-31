@@ -24,4 +24,7 @@ object DependencyVersion {
     const val OPEN_FEIGN_VERSION = "3.1.4"
 
     const val SPRING_CLOUD_CONFIG_VERSION = "2023.0.3"
+
+    //Resilience4j
+    const val RESILIENCE4J = "2.0.2"
 }
