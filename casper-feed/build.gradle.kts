@@ -97,6 +97,12 @@ dependencies {
 
     // Cloud Config
     implementation(Dependencies.SPRING_CLOUD_CONFIG)
+
+    // Resilience4j
+    implementation(Dependencies.RESILIENCE4J_CIRCUITBREAKER)
+    implementation(Dependencies.RESILIENCE4J_RETRY)
+    implementation(Dependencies.RESILIENCE4J_SPRING_BOOT)
+    implementation(Dependencies.RESILIENCE4J_KOTLIN)
 }
 
 protobuf {
