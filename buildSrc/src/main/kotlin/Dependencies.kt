@@ -60,8 +60,8 @@ object Dependencies {
     const val SPRING_CLOUD_CONFIG = "org.springframework.cloud:spring-cloud-starter-config"
 
     //Resilience4j
-    const val RESILIENCE4J_CIRCUITBREAKER = "io.github.resilience4j:resilience4j-circuitbreaker:${DependencyVersions.RESILIENCE4J}"
-    const val RESILIENCE4J_RETRY = "io.github.resilience4j:resilience4j-retry:${DependencyVersions.RESILIENCE4J}"
-    const val RESILIENCE4J_SPRING_BOOT = "io.github.resilience4j:resilience4j-spring-boot3:${DependencyVersions.RESILIENCE4J}"
-    const val RESILIENCE4J_KOTLIN = "io.github.resilience4j:resilience4j-kotlin:${DependencyVersions.RESILIENCE4J}"
+    const val RESILIENCE4J_CIRCUITBREAKER = "io.github.resilience4j:resilience4j-circuitbreaker:${DependencyVersion.RESILIENCE4J}"
+    const val RESILIENCE4J_RETRY = "io.github.resilience4j:resilience4j-retry:${DependencyVersion.RESILIENCE4J}"
+    const val RESILIENCE4J_SPRING_BOOT = "io.github.resilience4j:resilience4j-spring-boot3:${DependencyVersion.RESILIENCE4J}"
+    const val RESILIENCE4J_KOTLIN = "io.github.resilience4j:resilience4j-kotlin:${DependencyVersion.RESILIENCE4J}"
 }
