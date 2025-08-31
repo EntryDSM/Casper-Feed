@@ -1,8 +1,8 @@
-package hs.kr.entrydsm.feed.infrastructure.grpc.client
+package hs.kr.entrydsm.feed.infrastructure.grpc.user.client
 
 import hs.kr.entrydsm.casper.admin.proto.AdminServiceGrpc
 import hs.kr.entrydsm.casper.admin.proto.AdminServiceProto
-import hs.kr.entrydsm.feed.infrastructure.grpc.client.dto.response.InternalAdminResponse
+import hs.kr.entrydsm.feed.infrastructure.grpc.user.client.dto.response.InternalAdminResponse
 import io.grpc.Channel
 import io.grpc.stub.StreamObserver
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -18,7 +18,7 @@ import kotlin.coroutines.resumeWithException
  * @property channel gRPC 통신을 위한 채널 (user-service로 자동 주입됨)
  */
 @Component
-class AdminGrpcClient {
+class UserGrpcClient {
 
     @GrpcClient("user-service")
     lateinit var channel: Channel
