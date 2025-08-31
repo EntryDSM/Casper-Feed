@@ -2,11 +2,15 @@ package hs.kr.entrydsm.feed.infrastructure.grpc.user.client
 
 import hs.kr.entrydsm.casper.admin.proto.AdminServiceGrpc
 import hs.kr.entrydsm.casper.admin.proto.AdminServiceProto
+import hs.kr.entrydsm.feed.global.extension.executeGrpcCallWithResilience
 import hs.kr.entrydsm.feed.infrastructure.grpc.user.client.dto.response.InternalAdminResponse
+import io.github.resilience4j.circuitbreaker.CircuitBreaker
+import io.github.resilience4j.retry.Retry
 import io.grpc.Channel
 import io.grpc.stub.StreamObserver
 import kotlinx.coroutines.suspendCancellableCoroutine
 import net.devh.boot.grpc.client.inject.GrpcClient
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
 import java.util.UUID
 import kotlin.coroutines.resume
@@ -18,7 +22,10 @@ import kotlin.coroutines.resumeWithException
  * @property channel gRPC 통신을 위한 채널 (user-service로 자동 주입됨)
  */
 @Component
-class UserGrpcClient {
+class UserGrpcClient(
+    @Qualifier("userGrpcRetry") private val retry: Retry,
+    @Qualifier("userGrpcCircuitBreaker") private val circuitBreaker: CircuitBreaker
+) {
 
     @GrpcClient("user-service")
     lateinit var channel: Channel
@@ -33,24 +40,31 @@ class UserGrpcClient {
      * @throws java.util.concurrent.CancellationException 코루틴이 취소된 경우
      */
     suspend fun getAdminInfoByAdminId(adminId: UUID): InternalAdminResponse {
-        val adminStub = AdminServiceGrpc.newStub(channel)
 
-        val request = AdminServiceProto.GetAdminIdRequest.newBuilder()
-            .setAdminId(adminId.toString())
-            .build()
+        return executeGrpcCallWithResilience(
+            retry = retry,
+            circuitBreaker = circuitBreaker,
+            fallback = { InternalAdminResponse(adminId) }
+        ) {
+            val adminStub = AdminServiceGrpc.newStub(channel)
 
-        val response = suspendCancellableCoroutine { continuation ->
-            adminStub.getAdminByUUID(request, object : StreamObserver<AdminServiceProto.GetAdminIdResponse> {
-                override fun onNext(value: AdminServiceProto.GetAdminIdResponse) {
-                    continuation.resume(value)
-                }
-                override fun onError(t: Throwable) {
-                    continuation.resumeWithException(t)
-                }
-                override fun onCompleted() {}
-            })
+            val request = AdminServiceProto.GetAdminIdRequest.newBuilder()
+                .setAdminId(adminId.toString())
+                .build()
+
+            val response = suspendCancellableCoroutine { continuation ->
+                adminStub.getAdminByUUID(request, object : StreamObserver<AdminServiceProto.GetAdminIdResponse> {
+                    override fun onNext(value: AdminServiceProto.GetAdminIdResponse) {
+                        continuation.resume(value)
+                    }
+                    override fun onError(t: Throwable) {
+                        continuation.resumeWithException(t)
+                    }
+                    override fun onCompleted() {}
+                })
+            }
+
+            InternalAdminResponse(id = UUID.fromString(response.adminId))
         }
-
-        return InternalAdminResponse(id = UUID.fromString(response.adminId))
     }
 }
