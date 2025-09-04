@@ -1,8 +1,8 @@
 package hs.kr.entrydsm.feed.global.utils.admin
 
 import hs.kr.entrydsm.feed.global.exception.InvalidTokenException
-import hs.kr.entrydsm.feed.infrastructure.grpc.client.AdminGrpcClient
-import hs.kr.entrydsm.feed.infrastructure.grpc.client.dto.response.InternalAdminResponse
+import hs.kr.entrydsm.feed.infrastructure.grpc.user.client.UserGrpcClient
+import hs.kr.entrydsm.feed.infrastructure.grpc.user.client.dto.response.InternalAdminResponse
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import java.util.*
@@ -12,11 +12,11 @@ import java.util.*
  * Spring Security의 SecurityContext를 사용하여 현재 인증된 관리자 정보를 조회하고,
  * gRPC를 통해 관리자 서비스에서 추가 정보를 조회합니다.
  *
- * @property adminGrpcClient 관리자 정보 조회를 위한 gRPC 클라이언트
+ * @property userGrpcClient 관리자 정보 조회를 위한 gRPC 클라이언트
  */
 @Component
 class AdminUtils(
-    private val adminGrpcClient: AdminGrpcClient
+    private val userGrpcClient: UserGrpcClient
 ) {
 
     /**
@@ -28,7 +28,7 @@ class AdminUtils(
      * @throws hs.kr.entrydsm.feed.global.exception.InvalidTokenException 인증 토큰이 유효하지 않은 경우
      * @throws io.grpc.StatusRuntimeException gRPC 통신 중 오류가 발생한 경우
      */
-    suspend fun getCurrentAdmin(): InternalAdminResponse = adminGrpcClient.getAdminInfoByAdminId(getCurrentAdminId())
+    suspend fun getCurrentAdmin(): InternalAdminResponse = userGrpcClient.getAdminInfoByAdminId(getCurrentAdminId())
 
     /**
      * 현재 인증된 관리자의 고유 식별자(UUID)를 조회합니다.

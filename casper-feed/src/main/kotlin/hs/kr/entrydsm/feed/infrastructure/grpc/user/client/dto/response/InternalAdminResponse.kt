@@ -1,4 +1,4 @@
-package hs.kr.entrydsm.feed.infrastructure.grpc.client.dto.response
+package hs.kr.entrydsm.feed.infrastructure.grpc.user.client.dto.response
 
 import java.util.UUID
 
