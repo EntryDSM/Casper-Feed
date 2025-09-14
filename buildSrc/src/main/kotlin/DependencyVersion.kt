@@ -13,7 +13,7 @@ object DependencyVersion {
     const val GRPC = "1.61.1"
     const val GRPC_KOTLIN = "1.4.1"
     const val PROTOBUF = "3.25.3"
-    const val GRPC_CLIENT = "2.15.0.RELEASE"
+    const val GRPC_CLIENT = "3.1.0.RELEASE"
     const val GOOGLE_PROTOBUF = "3.25.3"
 
     const val KAFKA_VERSION = "3.1.2"
@@ -23,7 +23,7 @@ object DependencyVersion {
 
     const val OPEN_FEIGN_VERSION = "3.1.4"
 
-    const val SPRING_CLOUD_CONFIG_VERSION = "2023.0.3"
+    const val SPRING_CLOUD_CONFIG_VERSION = "2024.0.2"
 
     //Resilience4j
     const val RESILIENCE4J = "2.0.2"
