@@ -18,7 +18,7 @@ object DependencyVersion {
 
     const val KAFKA_VERSION = "3.1.2"
 
-    const val SWAGGER_VERSION = "2.5.0"
+    const val SWAGGER_VERSION = "2.8.13"
     const val AWS = "1.12.281"
 
     const val OPEN_FEIGN_VERSION = "3.1.4"
