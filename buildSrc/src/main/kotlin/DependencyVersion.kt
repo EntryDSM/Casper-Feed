@@ -10,7 +10,7 @@ object DependencyVersion {
     const val ORG_JSON = "20230227"
     const val MAPSTRUCT = "1.6.0"
 
-    const val GRPC = "1.61.1"
+    const val GRPC = "1.58.0"
     const val GRPC_KOTLIN = "1.4.1"
     const val PROTOBUF = "3.25.3"
     const val GRPC_CLIENT = "3.1.0.RELEASE"
