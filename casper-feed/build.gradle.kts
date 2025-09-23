@@ -7,6 +7,7 @@ plugins {
     id(Plugin.CASPER_DOCUMENTATION)
     id(Plugin.PROTOBUF) version PluginVersion.PROTOBUF_VERSION
     id(Plugin.OSDETECTOR) version PluginVersion.OSDETECTOR_VERSION
+    kotlin(Plugin.JPA) version PluginVersion.KOTLIN_VERSION
 }
 
 group = "hs.kr.entrydsm"
