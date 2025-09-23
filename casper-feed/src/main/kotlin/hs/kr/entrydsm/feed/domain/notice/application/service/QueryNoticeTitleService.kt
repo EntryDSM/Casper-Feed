@@ -4,6 +4,7 @@ import hs.kr.entrydsm.feed.domain.notice.adapter.`in`.web.dto.response.QueryNoti
 import hs.kr.entrydsm.feed.domain.notice.application.port.`in`.QueryNoticeTitleUseCase
 import hs.kr.entrydsm.feed.domain.notice.application.port.out.FindNoticePort
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * 공지사항 제목 조회를 처리하는 서비스 클래스입니다.
@@ -14,20 +15,20 @@ import org.springframework.stereotype.Service
 class QueryNoticeTitleService(
     private val findNoticePort: FindNoticePort,
 ) : QueryNoticeTitleUseCase {
+
     /**
      * 모든 공지사항의 제목과 작성일을 조회합니다.
      *
      * @return 공지사항 제목 목록 (최신순으로 정렬)
      */
-    override fun execute(): List<QueryNoticeTitleResponse> {
-        return findNoticePort.findAll()
-            .map {
-                    it ->
+    @Transactional(readOnly = true)
+    override fun execute(): List<QueryNoticeTitleResponse> =
+        findNoticePort.findAll()
+            .map { it ->
                 QueryNoticeTitleResponse(
                     id = it.id!!,
                     title = it.title,
-                    it.createdAt,
+                    createdAt = it.createdAt
                 )
             }.sortedByDescending { it.createdAt }
-    }
 }
