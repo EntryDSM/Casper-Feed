@@ -8,6 +8,7 @@ import hs.kr.entrydsm.feed.domain.notice.adapter.`in`.web.dto.response.QueryNoti
 import hs.kr.entrydsm.feed.domain.notice.adapter.`in`.web.dto.response.UploadNoticeImageResponse
 import hs.kr.entrydsm.feed.domain.notice.model.type.NoticeType
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -116,7 +117,14 @@ interface NoticeApiDocument {
         ApiResponse(
             responseCode = "200",
             description = "공지사항 제목 조회 성공",
-            content = arrayOf(Content(schema = Schema(implementation = QueryNoticeTitleResponse::class)))
+            content = [
+                Content(
+                    mediaType = "application/json",
+                    array = ArraySchema(
+                        schema = Schema(implementation = QueryNoticeTitleResponse::class)
+                    )
+                )
+            ]
         )
     )
     /**
@@ -134,7 +142,12 @@ interface NoticeApiDocument {
         ApiResponse(
             responseCode = "200",
             description = "공지사항 상세 조회 성공",
-            content = [Content(schema = Schema(implementation = QueryDetailsNoticeResponse::class))]
+            content = [
+                Content(
+                    mediaType = "application/json",
+                    schema = Schema(implementation = QueryDetailsNoticeResponse::class)
+                )
+            ]
         ),
         ApiResponse(
             responseCode = "404",
@@ -161,7 +174,12 @@ interface NoticeApiDocument {
         ApiResponse(
             responseCode = "200",
             description = "종류별 공지사항 전체 조회 성공",
-            content = arrayOf(Content(schema = Schema(implementation = QueryListNoticeResponse::class)))
+            content = [
+                Content(
+                    mediaType = "application/json",
+                    schema = Schema(implementation = QueryListNoticeResponse::class)
+                )
+            ]
         )
     )
     /**
