@@ -8,6 +8,7 @@ import hs.kr.entrydsm.feed.domain.notice.application.port.out.FindNoticePort
 import hs.kr.entrydsm.feed.infrastructure.s3.PathList
 import hs.kr.entrydsm.feed.infrastructure.s3.util.FileUtil
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 
 /**
@@ -28,6 +29,7 @@ class QueryDetailsNoticeService(
      * @return 공지사항 상세 정보 응답
      * @throws NoticeNotFoundException 지정된 ID의 공지사항을 찾을 수 없는 경우
      */
+    @Transactional(readOnly = true)
     override fun execute(noticeId: UUID): QueryDetailsNoticeResponse {
         val notice = findNoticePort.findByIdOrNull(noticeId) ?: throw NoticeNotFoundException
         val imageURL = notice.fileName?.let { getUrl(it, PathList.NOTICE) }

@@ -7,6 +7,7 @@ import hs.kr.entrydsm.feed.domain.notice.application.port.out.FindNoticePort
 import hs.kr.entrydsm.feed.domain.notice.model.Notice
 import hs.kr.entrydsm.feed.domain.notice.model.type.NoticeType
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * 유형별 공지사항 목록 조회를 처리하는 서비스 클래스입니다.
@@ -23,6 +24,7 @@ class QueryNoticeListByTypeService(
      * @param noticeType 조회할 공지사항 유형 (null인 경우 모든 유형 조회)
      * @return 공지사항 목록 응답 (고정 공지가 상단에 정렬됨)
      */
+    @Transactional(readOnly = true)
     override fun execute(noticeType: NoticeType?): QueryListNoticeResponse {
         val notices =
             getNoticeList(noticeType).map { it ->
