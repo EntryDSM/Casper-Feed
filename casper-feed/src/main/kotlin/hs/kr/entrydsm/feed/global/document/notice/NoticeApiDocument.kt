@@ -9,6 +9,7 @@ import hs.kr.entrydsm.feed.domain.notice.adapter.`in`.web.dto.response.UploadNot
 import hs.kr.entrydsm.feed.domain.notice.model.type.NoticeType
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
+import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -115,7 +116,7 @@ interface NoticeApiDocument {
         ApiResponse(
             responseCode = "200",
             description = "공지사항 제목 조회 성공",
-            content = arrayOf(Content())
+            content = arrayOf(Content(schema = Schema(implementation = QueryNoticeTitleResponse::class)))
         )
     )
     /**
@@ -133,7 +134,7 @@ interface NoticeApiDocument {
         ApiResponse(
             responseCode = "200",
             description = "공지사항 상세 조회 성공",
-            content = arrayOf(Content())
+            content = [Content(schema = Schema(implementation = QueryDetailsNoticeResponse::class))]
         ),
         ApiResponse(
             responseCode = "404",
@@ -160,7 +161,7 @@ interface NoticeApiDocument {
         ApiResponse(
             responseCode = "200",
             description = "종류별 공지사항 전체 조회 성공",
-            content = arrayOf(Content())
+            content = arrayOf(Content(schema = Schema(implementation = QueryListNoticeResponse::class)))
         )
     )
     /**
