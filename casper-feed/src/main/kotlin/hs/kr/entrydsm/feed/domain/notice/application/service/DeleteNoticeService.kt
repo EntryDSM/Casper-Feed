@@ -5,6 +5,7 @@ import hs.kr.entrydsm.feed.domain.notice.application.port.`in`.DeleteNoticeUseCa
 import hs.kr.entrydsm.feed.domain.notice.application.port.out.DeleteNoticePort
 import hs.kr.entrydsm.feed.domain.notice.application.port.out.FindNoticePort
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 
 /**
@@ -24,6 +25,7 @@ class DeleteNoticeService(
      * @param noticeId 삭제할 공지사항의 고유 식별자
      * @throws NoticeNotFoundException 지정된 ID의 공지사항을 찾을 수 없는 경우
      */
+    @Transactional
     override fun execute(noticeId: UUID) {
         val notice = findNoticePort.findByIdOrNull(noticeId) ?: throw NoticeNotFoundException
         deleteNoticePort.deleteNotice(notice)
