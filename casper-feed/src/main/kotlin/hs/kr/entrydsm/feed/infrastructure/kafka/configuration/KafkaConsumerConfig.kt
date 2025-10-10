@@ -74,10 +74,6 @@ class KafkaConsumerConfig(
             JsonDeserializer.TYPE_MAPPINGS to "",
             JsonDeserializer.USE_TYPE_INFO_HEADERS to false,
             JsonDeserializer.VALUE_DEFAULT_TYPE to "java.lang.Object",
-            // Security 설정
-            "security.protocol" to "SASL_PLAINTEXT",
-            "sasl.mechanism" to "SCRAM-SHA-512",
-            "sasl.jaas.config" to buildJaasConfig(),
         )
     }
 
