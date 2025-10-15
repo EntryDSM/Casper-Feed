@@ -53,9 +53,6 @@ object Dependencies {
     // open feign
     const val OPEN_FEIGN = "org.springframework.cloud:spring-cloud-starter-openfeign:${DependencyVersion.OPEN_FEIGN_VERSION}"
 
-    // Kafka
-    const val KAFKA = "org.springframework.kafka:spring-kafka:${DependencyVersion.KAFKA_VERSION}"
-
     // Spring Cloud Config
     const val SPRING_CLOUD_CONFIG = "org.springframework.cloud:spring-cloud-starter-config"
 

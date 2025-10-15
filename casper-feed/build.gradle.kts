@@ -93,9 +93,6 @@ dependencies {
     // feign
     implementation(Dependencies.OPEN_FEIGN)
 
-    // Kafka
-    implementation(Dependencies.KAFKA)
-
     // Cloud Config
     implementation(Dependencies.SPRING_CLOUD_CONFIG)
 
